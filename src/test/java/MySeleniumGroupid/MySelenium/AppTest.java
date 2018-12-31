@@ -27,6 +27,7 @@ public class AppTest
 	}
 	@Test
 	public void addNewUser() {
+		driver = new ChromeDriver();
 		driver.get(BASE_URL+"/add.php");
 		driver.findElement(By.name("login")).sendKeys(userName);
 		driver.findElement(By.name("password")).sendKeys(userName);
@@ -34,6 +35,7 @@ public class AppTest
 	}
 	@Test
 	public void loginNewUser() {
+		driver = new ChromeDriver();
 		driver.get(BASE_URL); driver.manage().window().maximize();
 		driver.findElement(By.name("login")).sendKeys(userName);
 		driver.findElement(By.name("password")).sendKeys(userName);
