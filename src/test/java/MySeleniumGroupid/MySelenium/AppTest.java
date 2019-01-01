@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeClass;
 
 /**
@@ -22,8 +23,10 @@ public class AppTest
 	public void prepareChrome() {
 		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\rajassat\\Desktop\\career\\Devops\\selenium\\jars\\chromedriver_win32\\chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--no-sandbox");
 		if(driver == null) {
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(options);
 		}
         userName = "satyarajasekhar"+ (new Random()).nextInt(500);
 	}
