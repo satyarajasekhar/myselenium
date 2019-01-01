@@ -16,18 +16,20 @@ import org.testng.annotations.BeforeClass;
 public class AppTest 
 {
 	WebDriver driver = null;
-	String BASE_URL = "http://ec2-35-154-15-249.ap-south-1.compute.amazonaws.com:3001";
-	String userName = "satyarajasekhar"+ (new Random()).nextInt(500);
+	String BASE_URL = "http://ec2-13-232-222-250.ap-south-1.compute.amazonaws.com:3001/";
+	String userName = "";
 	@BeforeClass
 	public void prepareChrome() {
-		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\rajassat\\Desktop\\career\\Devops\\selenium\\jars"
-				//+ "\\chromedriver_win32\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\rajassat\\Desktop\\career\\Devops\\selenium\\jars\\chromedriver_win32\\chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-        driver = new ChromeDriver();
+		if(driver == null) {
+			driver = new ChromeDriver();
+		}
+        userName = "satyarajasekhar"+ (new Random()).nextInt(500);
 	}
 	@Test
 	public void addNewUser() {
-		driver = new ChromeDriver();
+		prepareChrome();
 		driver.get(BASE_URL+"/add.php");
 		driver.findElement(By.name("login")).sendKeys(userName);
 		driver.findElement(By.name("password")).sendKeys(userName);
@@ -35,7 +37,7 @@ public class AppTest
 	}
 	@Test
 	public void loginNewUser() {
-		driver = new ChromeDriver();
+		prepareChrome();
 		driver.get(BASE_URL); driver.manage().window().maximize();
 		driver.findElement(By.name("login")).sendKeys(userName);
 		driver.findElement(By.name("password")).sendKeys(userName);
